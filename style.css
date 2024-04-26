@@ -1,3 +1,66 @@
 body {
     background-color: rgb(88, 121, 110);
 }
+
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 32px;
+}
+
+.book {
+    width: 400px;
+    background-color: beige;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 5px;
+    padding-left: 10px;
+}
+
+.book h5{
+    text-align: center;
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+.box {
+    width: 50%;
+    background-color: rgb(30, 30, 18);
+    border: 1px solid #000000;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 5px;
+    padding-left: 50px;
+    flex: 1;
+}
+
+.row{
+    display: flex;
+}
+
+h2 {
+    color: antiquewhite;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.delete {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .delete:hover {
+    background-color: antiquewhite;
+  }
