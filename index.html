@@ -10,50 +10,36 @@
     <body>
         <h1>My Library</h1>
 
-        <div class="container">
+        <div class="container" id="container">
 
-            <div class="row" >
+            <div class="row">
                 <div class="box" id="books">
-                    <h2>Available</h2>
-                    <div class="book" id="books_1">
-                        <h5>Livre 1</h5>
-                        <p class="author">Author</p>
-                        <p class="id">ID</p>
-                        <p class="price">Price</p>
-                        <button class="delete" >Delete</button>
+                    <div id="availableBooks">
+                        <h2>Available</h2>
+                        <div id="availableList"></div>
                     </div>
                 </div>
 
                 <div class="box" id="books">
-                    <h2>Sold</h2>
-                    <div class="book">
-                        <h5>Livre 2</h5>
-                        <p class="author">Author</p>
-                        <p class="id">ID</p>
-                        <p class="price">Price</p>
-                        <button class="delete">Delete</button>
-                    </div>
-
-                    <div class="book">
-                        <h5>Livre 3</h5>
-                        <p class="author">Author</p>
-                        <p class="id">ID</p>
-                        <p class="price">Price</p>
-                        <button class="delete">Delete</button>
+                    <div id="soldBooks">
+                        <h2>Sold</h2>
+                        <div id="soldList"></div>
                     </div>
                 </div>
 
             </div>
 
-            <form action="" class="box">
+            <form>
                 <h2>Add Book</h2>
                 <input type="text" id="bookName" placeholder="Name of the Book" required>
                 <input type="text" id="bookId" placeholder="Id of the Book">
                 <input type="text" id="bookAuthor" placeholder="Author of the Book" required>
-                <input type="teyt" id="bookPrice" placeholder="Price of the Book" required>
-                <button onclick="addBook()" class="submit">Ajouter Livre</button>
+                <input type="text" id="bookPrice" placeholder="Price of the Book" required>
+                <button onclick="addBook(event)" class="submit">Ajouter Livre</button>
             </form>
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
         <script src="./script.js"></script>
     </body>

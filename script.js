@@ -1,65 +1,42 @@
-let books = [];
-let soldBooks = [];
+let books = [
+    {id: 1, name: "Harry Potter", author: "David Pereira", price: 10, sold: false},
+    {id: 2, name: "Harry Potter 2", author: "David Pereira", price: 8, sold: false},
+    {id: 3, name: "Harry Potter 3", author: "David Pereira", price: 20, sold: true},
+];
 
-function addBook() {
-    const name = document.getElementById('bookName').value;
-    const author = document.getElementById('bookAuthor').value;
-    const price = document.getElementById('bookPrice').value;
-    const id = document.getElementById('bookId').value;
-    if(name && author && price && id){
-        const book = {id, name, author, price};
-        books.push(book);
-        updateBookList();
-    }
-}
+let $availableList = $("#availableList");
+let $soldList = $("#soldList");
 
-function updateBookList() {
-    const saleList = document.getElementById('books');
-    saleList.innerHTML = '';
-    books.forEach(book => {
-        const div = document.createElement('div');
-        const name = document.createElement('p');
-        const author = document.createElement('p');
-        const id = document.createElement('p');
-        const price = document.createElement('p');
-        name.innerHTML = `${book.name}`;
-        author.innerHTML = `${book.author}`;
-        id.innerHTML = `${book.id}`;
-        price.innerHTML = `${book.price}`;
-        const deleteBtn = document.createElement('button');
-        deleteBtn.textContent ='Deleted'
-        deleteBtn.onclick = () => deleteBook(book.id);
-        div.appendChild(deleteBtn);
-        saleList.appendChild(div);
+
+const renderBooks = () => {
+    $availableList.empty();
+    $soldList.empty();
+
+    books.forEach(function (book) {
+        const $div = $("<div>")
+            .addClass("book")
+            .attr("book", book.id)
+            .appendTo(book.sold ? $soldList : $availableList);
+
+        $("<div>")
+            .text(`${book.name} - ${book.author} - ${book.price}€ - ${book.id}`)
+            .appendTo($div);
+
+            $("<button>")
+            .text("Delete")
+            .addClass("delete")
+            .click(function () {
+                deleteBook(book.id);
+            })
+            .appendTo($div);
     });
 
-    const soldList = document.getElementById('soldList');
-    soldList.innerHTML = '';
-    soldBooks.forEach(book => {
-        const div = document.createElement('div');
-        const name = document.createElement('p');
-        const author = document.createElement('p');
-        const id = document.createElement('p');
-        const price = document.createElement('p');
-        name.innerHTML = `${book.name}`;
-        author.innerHTML = `${book.author}`;
-        id.innerHTML = `${book.id}`;
-        price.innerHTML = `${book.price}`;
-        const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = 'Supprimer';
-        deleteBtn.onclick = () => deleteBook(book.id);
-        li.appendChild(deleteBtn);
-        soldList.appendChild(div);
+    $(".delete").click(function () {
+        const bookId = $(this).parent().attr("book");
+        deleteBook(bookId);
     });
 }
 
-function deleteBook(bookId) {
-    const bookIndex = soldBooks.findIndex(book => book.id === bookId);
-    if (bookIndex > -1) {
-        soldBooks.splice(bookIndex, 1);
-        updateBookLists();
-    }
-}
 
 const addBehaviorToBook = (book) => {
     if (!book.id) {
@@ -89,16 +66,47 @@ const addBehaviorToPanel = (panel) => {
     })
 }
 
+function addBook(event) {
+    event.preventDefault();
+
+    const name = $("#bookName").val();
+    const author = $("#bookAuthor").val();
+    const price = $("#bookPrice").val();
+    const id = $("#bookId").val();
+
+    books.push({id, name, author, price, sold: false});
+    renderBooks();
+
+    const newBook = $(`[book=${id}]`)[0]; 
+    newBook.setAttribute('draggable', true); 
+    addBehaviorToBook(newBook);
+
+    $("#book-name").val("");
+    $("#book-author").val("");
+    $("#book-price").val("");
+}
+
+function deleteBook(id) {
+    const index = books.findIndex(book => book.id === id);
+    if (index !== -1) {
+        books.splice(index, 1);
+        renderBooks();
+
+        const remainingBooks = document.querySelectorAll(".book");
+        remainingBooks.forEach(addBehaviorToBook);
+    }
+}
+
 const main = () => {
-    const books = document.querySelectorAll(".book")
-    books.forEach((book) => {
+    renderBooks();
+    const wbooks = document.querySelectorAll(".book")
+    wbooks.forEach((book) => {
         book.setAttribute('draggable', true)
     })
-    books.forEach(addBehaviorToBook)
+    wbooks.forEach(addBehaviorToBook)
 
     const panels = document.querySelectorAll(".box")
     panels.forEach(addBehaviorToPanel)
-    updateBookList();
 }
 
 document.addEventListener('DOMContentLoaded', main)
