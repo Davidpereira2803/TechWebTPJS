@@ -13,18 +13,18 @@
         <div class="container">
 
             <div class="row" >
-                <div class="box">
+                <div class="box" id="books">
                     <h2>Available</h2>
                     <div class="book" id="books_1">
                         <h5>Livre 1</h5>
                         <p class="author">Author</p>
                         <p class="id">ID</p>
                         <p class="price">Price</p>
-                        <button class="delete">Delete</button>
+                        <button class="delete" >Delete</button>
                     </div>
                 </div>
 
-                <div class="box">
+                <div class="box" id="books">
                     <h2>Sold</h2>
                     <div class="book">
                         <h5>Livre 2</h5>
@@ -45,6 +45,14 @@
 
             </div>
 
+            <form action="" class="box">
+                <h2>Add Book</h2>
+                <input type="text" id="bookName" placeholder="Name of the Book" required>
+                <input type="text" id="bookId" placeholder="Id of the Book">
+                <input type="text" id="bookAuthor" placeholder="Author of the Book" required>
+                <input type="teyt" id="bookPrice" placeholder="Price of the Book" required>
+                <button onclick="addBook()" class="submit">Ajouter Livre</button>
+            </form>
         </div>
 
         <script src="./script.js"></script>

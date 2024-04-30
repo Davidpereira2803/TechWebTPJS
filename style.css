@@ -59,8 +59,36 @@ h2 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .delete:hover {
+}
+
+.delete:hover {
     background-color: antiquewhite;
-  }
+}
+
+.submit {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.submit:hover {
+    background-color: antiquewhite;
+}
+
+form {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
