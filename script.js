@@ -64,10 +64,7 @@ const boxBehavior = (box) => {
     })
 
     box.addEventListener('drop', (event) => {
-        console.log(event)
         const dragged_book_id = event.dataTransfer.getData("book_1")
-        console.log(dragged_book_id)
-
         event.target.appendChild(document.getElementById(dragged_book_id))
     })
 }
